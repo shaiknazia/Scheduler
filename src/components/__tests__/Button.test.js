@@ -29,31 +29,3 @@ it.skip("renders a danger button", () => {
   const { getByText } = render(<Button danger>Danger</Button>);
   expect(getByText("Danger")).toHaveClass("button--danger");
 });
-
-it.skip("renders a clickable button", () => {
-  const handleClick = jest.fn();
-  const { getByText } = render(
-    <Button onClick={handleClick}>Clickable</Button>
-  );
-
-  const button = getByText("Clickable");
-
-  fireEvent.click(button);
-
-  expect(handleClick).toHaveBeenCalledTimes(1);
-});
-
-it.skip("renders a disabled button", () => {
-  const handleClick = jest.fn();
-  const { getByText } = render(
-    <Button disabled onClick={handleClick}>
-      Disabled
-    </Button>
-  );
-
-  const button = getByText("Disabled");
-
-  fireEvent.click(button);
-
-  expect(handleClick).toHaveBeenCalledTimes(0);
-});

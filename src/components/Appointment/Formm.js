@@ -9,10 +9,11 @@ export default function Form(props) {
 
   function reset() {
     setName("");
-    setInterviewer(null); // when user clicks save it clears form values
+    setInterviewer(null);
   }
   
-  // name or interviewer must be inputted or cannot save
+  
+  
   function validate() {
     if (name === "") {
       setError("Student name cannot be blank");

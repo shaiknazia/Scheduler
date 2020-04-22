@@ -18,7 +18,7 @@ import Show from "components/Appointment/Show.js";
 import Confirm from "components/Appointment/Confirm";
 import Status from "components/Appointment/Status";
 import Error from "components/Appointment/Error";
-import Form from "components/Appointment/Form";
+import Form from "components/Appointment/Formm";
 
 
 storiesOf("Button", module)
