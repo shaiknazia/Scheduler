@@ -58,9 +58,8 @@ export default function Appointment(props) {
   //  }
 
   return (
-    <article className="appointment">
-      <Header time={props.time}/>
-
+    <article className="appointment" data-testid="appointment">
+      <Header time={props.time} />
       {mode === SHOW && (
         <Show
           student={props.interview.student}
@@ -69,6 +68,7 @@ export default function Appointment(props) {
           onEdit={() => transition(EDIT)}
         />
       )}
+      
       {mode === CREATE && (
         <Form
           interviewers={props.interviewers}
@@ -76,6 +76,8 @@ export default function Appointment(props) {
           onCancel={() => back()}
         />
       )}
+
+
       {mode === EDIT && (
         <Form
           name={props.interview.student}
@@ -86,34 +88,28 @@ export default function Appointment(props) {
         />
       )}
 
+      {mode === ERROR_SAVE && (
+        <Error message="Could not save appointment" onClose={() => back() } />
+      )}
+
+      {mode === ERROR_DELETE && (
+        <Error message="Could not delete appointment" onClose={() => back()} />
+      )}
+
       {mode === EMPTY && <Empty onAdd={() => transition(CREATE)} />}
-
-      {mode === SAVING && <Status message="SAVING" />}
-
-      {mode === DELETING && <Status message="DELETING" />}
 
       {mode === CONFIRM && (
         <Confirm
-          message="Are you sure?"
-          onConfirm={() => deleteInterview(props.id)}
+          message="Are you sure you would like to delete?"
+          onConfirm={deleteInterview}
           onCancel={() => back()}
         />
       )}
 
+      {mode === SAVING && <Status message="Saving" />}
 
-      {mode === ERROR_DELETE && (
-        <Error
-          message="Error: Cannot delete your appointment"
-          onClose={() => back()}
-        />
-      )}
-
-      {mode === ERROR_SAVE && (
-        <Error
-          message="Error: Cannot save your appointment"
-          onClose={() => back()}
-        />
-      )}
+      {mode === DELETING && <Status message="Deleting" />}
     </article>
-
-)}
+  );
+}
+  
